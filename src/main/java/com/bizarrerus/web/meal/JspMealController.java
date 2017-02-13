@@ -1,3 +1,4 @@
+/*
 package com.bizarrerus.web.meal;
 
 import org.springframework.stereotype.Controller;
@@ -70,3 +71,4 @@ public class JspMealController extends AbstractMealController {
         return Integer.valueOf(paramId);
     }
 }
+*/

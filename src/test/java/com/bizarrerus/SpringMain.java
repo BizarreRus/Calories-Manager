@@ -12,6 +12,9 @@ import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.bizarrerus.TestUtil.mockAuthorize;
+import static com.bizarrerus.UserTestData.USER;
+
 public class SpringMain {
     public static void main(String[] args) {
         // java 7 Automatic resource management
@@ -19,6 +22,8 @@ public class SpringMain {
             appCtx.getEnvironment().setActiveProfiles(Profiles.getActiveDbProfile(), Profiles.DB_IMPLEMENTATION);
             appCtx.load("spring/spring-app.xml", "spring/mock.xml");
             appCtx.refresh();
+
+            mockAuthorize(USER);
 
             System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
             AdminRestController adminUserController = appCtx.getBean(AdminRestController.class);

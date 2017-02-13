@@ -8,10 +8,11 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.util.CollectionUtils;
-import com.bizarrerus.util.MealsUtil;
 
 import javax.persistence.*;
 import java.util.*;
+
+import static com.bizarrerus.util.UserUtil.DEFAULT_CALORIES_PER_DAY;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
@@ -57,7 +58,7 @@ public class User extends NamedEntity {
 
     @Column(name = "calories_per_day", columnDefinition = "int default 2000")
     @Range(min = 10, max = 10000)
-    private int caloriesPerDay = MealsUtil.DEFAULT_CALORIES_PER_DAY;
+    private int caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @OrderBy("dateTime DESC")
@@ -72,7 +73,7 @@ public class User extends NamedEntity {
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
-        this(id, name, email, password, MealsUtil.DEFAULT_CALORIES_PER_DAY, true, EnumSet.of(role, roles));
+        this(id, name, email, password, DEFAULT_CALORIES_PER_DAY, true, EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String email, String password, int caloriesPerDay, boolean enabled, Set<Role> roles) {

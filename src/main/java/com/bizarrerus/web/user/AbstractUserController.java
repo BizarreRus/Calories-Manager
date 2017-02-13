@@ -1,5 +1,6 @@
 package com.bizarrerus.web.user;
 
+import com.bizarrerus.to.UserTo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,18 @@ public abstract class AbstractUserController {
         service.update(user);
     }
 
+    public void update(UserTo userTo) {
+        log.info("update " + userTo);
+        service.update(userTo);
+    }
+
     public User getByMail(String email) {
         log.info("getByEmail " + email);
         return service.getByEmail(email);
+    }
+
+    public void enable(int id, boolean enabled) {
+        log.info((enabled ? "enable " : "disable ") + id);
+        service.enable(id, enabled);
     }
 }
