@@ -5,6 +5,26 @@ function makeEditable() {
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(event, jqXHR, options, jsExc);
     });
+
+    $("#startDate").datetimepicker({
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    $("#endDate").datetimepicker({
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    $("#startTime").datetimepicker({
+        datepicker: false,
+        format: 'H:i'
+    });
+
+    $("#endTime").datetimepicker({
+        datepicker: false,
+        format: 'H:i'
+    });
 }
 
 function add(title) {
@@ -16,7 +36,7 @@ function add(title) {
 }
 
 function updateRow(id) {
-    $('#modalTitle').html(editTitle);
+    $('#modalTitle').html($('#editTitle').val());
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
@@ -90,7 +110,7 @@ function renderEditBtn(data, type, row) {
 
 function renderDeleteBtn(data, type, row) {
     if (type == 'display') {
-        return '<a class="btn btn-xs btn-danger" onclick="deleteRow(' + row.id + ');">'+
+        return '<a class="btn btn-xs btn-danger" onclick="deleteRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }

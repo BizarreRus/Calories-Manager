@@ -12,6 +12,7 @@ import com.bizarrerus.web.json.JsonUtil;
 
 import java.util.Arrays;
 
+import static com.bizarrerus.TestUtil.mockAuthorize;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -30,6 +31,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGet() throws Exception {
+
+        mockAuthorize(USER);
         mockMvc.perform(get(REST_URL + MEAL1_ID))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -39,6 +42,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
+        mockAuthorize(USER);
         mockMvc.perform(delete(REST_URL + MEAL1_ID).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         MATCHER.assertCollectionEquals(Arrays.asList(MEAL6, MEAL5, MEAL4, MEAL3, MEAL2), service.getAll(START_SEQ));
@@ -48,6 +52,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     public void testUpdate() throws Exception {
         Meal updated = getUpdated();
 
+        mockAuthorize(USER);
         mockMvc.perform(put(REST_URL + MEAL1_ID).contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
@@ -58,6 +63,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
     @Test
     public void testCreate() throws Exception {
         Meal created = getCreated();
+
+        mockAuthorize(USER);
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(created)));
@@ -71,6 +78,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetAll() throws Exception {
+        mockAuthorize(USER);
         mockMvc.perform(get(REST_URL).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -80,6 +88,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetBetween() throws Exception {
+        mockAuthorize(USER);
         mockMvc.perform(get(REST_URL + "between?startDateTime=2015-05-30T07:00&endDateTime=2015-05-31T11:00:00"))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -90,6 +99,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testFilter() throws Exception {
+        mockAuthorize(USER);
         mockMvc.perform(get(REST_URL + "filter")
                 .param("startDate", "2015-05-30").param("startTime", "07:00")
                 .param("endDate", "2015-05-31").param("endTime", "11:00"))
@@ -103,6 +113,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testFilterAll() throws Exception {
+        mockAuthorize(USER);
         mockMvc.perform(get(REST_URL + "filter?startDate=&endTime="))
                 .andExpect(status().isOk())
                 .andDo(print())
