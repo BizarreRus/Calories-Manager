@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/ajax/profile/meals")
 public class MealAjaxController extends AbstractMealController {
 
+    @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MealWithExceed> getAll() {
         return super.getAll();
@@ -27,6 +28,7 @@ public class MealAjaxController extends AbstractMealController {
         return super.get(id);
     }
 
+    @Override
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
@@ -47,6 +49,7 @@ public class MealAjaxController extends AbstractMealController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
     @PostMapping(value = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MealWithExceed> getBetween(
             @RequestParam(value = "startDate", required = false) LocalDate startDate,

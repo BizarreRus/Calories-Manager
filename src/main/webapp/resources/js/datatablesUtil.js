@@ -29,9 +29,7 @@ function makeEditable() {
 
 function add(title) {
     $('#modalTitle').html(title);
-    // form.find(":input").val("");
-    // form.trigger('reset');
-    form[0].reset();
+    form.find(":input").val("");
     $('#editRow').modal();
 }
 
