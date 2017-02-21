@@ -98,6 +98,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getWithMeals(int id) {
-        return ValidationUtil.checkNotFoundWithId(repository.getWithMeals(id), id);
+        return checkNotFoundWithId(repository.getWithMeals(id), id);
     }
 }

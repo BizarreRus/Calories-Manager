@@ -6,24 +6,18 @@ function makeEditable() {
         failNoty(event, jqXHR, options, jsExc);
     });
 
-    $("#startDate").datetimepicker({
+    $("#startDate, #endDate").datetimepicker({
         timepicker: false,
         format: 'Y-m-d'
     });
 
-    $("#endDate").datetimepicker({
-        timepicker: false,
-        format: 'Y-m-d'
-    });
-
-    $("#startTime").datetimepicker({
+    $("#startTime, #endTime").datetimepicker({
         datepicker: false,
         format: 'H:i'
     });
 
-    $("#endTime").datetimepicker({
-        datepicker: false,
-        format: 'H:i'
+    $('#dateTime').datetimepicker({
+        format: 'Y-m-d H:i'
     });
 }
 

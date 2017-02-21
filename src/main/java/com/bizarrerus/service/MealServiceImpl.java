@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import com.bizarrerus.model.Meal;
 import com.bizarrerus.repository.MealRepository;
-import com.bizarrerus.util.ValidationUtil;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -54,6 +53,6 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal getWithUser(int id, int userId) {
-        return ValidationUtil.checkNotFoundWithId(repository.getWithUser(id, userId), id);
+        return checkNotFoundWithId(repository.getWithUser(id, userId), id);
     }
 }

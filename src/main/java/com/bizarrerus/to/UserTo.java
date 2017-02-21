@@ -27,6 +27,7 @@ public class UserTo implements HasId, Serializable {
     private String password;
 
     @Range(min = 10, max = 10000)
+    @NotNull
     private Integer caloriesPerDay = UserUtil.DEFAULT_CALORIES_PER_DAY;
 
     public UserTo() {
