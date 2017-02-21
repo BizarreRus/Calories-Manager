@@ -1,5 +1,6 @@
 package com.bizarrerus.web.user;
 
+import com.bizarrerus.AuthorizedUser;
 import com.bizarrerus.to.UserTo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,7 @@ public abstract class AbstractUserController {
 
     public void update(UserTo userTo) {
         log.info("update " + userTo);
+        checkIdConsistent(userTo, AuthorizedUser.id());
         service.update(userTo);
     }
 
