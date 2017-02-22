@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-
 public class UserTo implements HasId, Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -82,6 +81,10 @@ public class UserTo implements HasId, Serializable {
 
     public Integer getCaloriesPerDay() {
         return caloriesPerDay;
+    }
+
+    public void setCaloriesPerDay(Integer caloriesPerDay) {
+        this.caloriesPerDay = caloriesPerDay;
     }
 
     @Override

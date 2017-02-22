@@ -15,3 +15,4 @@
     i18n['${key}'] = '<spring:message code="${key}"/>';
     </c:forEach>
 </script>
+</script>

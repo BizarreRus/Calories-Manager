@@ -1,5 +1,6 @@
 package com.bizarrerus.web.user;
 
+import com.bizarrerus.to.UserTo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import com.bizarrerus.AuthorizedUser;
@@ -21,8 +22,9 @@ public class ProfileRestController extends AbstractUserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody User user) {
-        super.update(user, AuthorizedUser.id());
+    @Override
+    public void update(@RequestBody UserTo userTo) {
+        super.update(userTo);
     }
 
     @GetMapping(value = "/text")

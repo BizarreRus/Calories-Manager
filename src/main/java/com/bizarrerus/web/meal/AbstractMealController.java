@@ -17,6 +17,7 @@ import java.util.List;
 import static com.bizarrerus.util.ValidationUtil.checkIdConsistent;
 import static com.bizarrerus.util.ValidationUtil.checkNew;
 
+
 public abstract class AbstractMealController {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMealController.class);
 
@@ -43,12 +44,6 @@ public abstract class AbstractMealController {
 
     public void update(Meal meal, int id) {
         checkIdConsistent(meal, id);
-        int userId = AuthorizedUser.id();
-        LOG.info("update {} for User {}", meal, userId);
-        service.update(meal, userId);
-    }
-
-    public void update(Meal meal) {
         int userId = AuthorizedUser.id();
         LOG.info("update {} for User {}", meal, userId);
         service.update(meal, userId);

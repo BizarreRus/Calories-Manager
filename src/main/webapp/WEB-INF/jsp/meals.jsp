@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://bizarrerus.com/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
@@ -19,38 +21,38 @@
                     <div class="col-sm-7">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" id="filter">
+                                <form:form class="form-horizontal" id="filter">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-2" for="startDate"><spring:message
+                                        <label class="control-label col-sm-3" for="startDate"><spring:message
                                                 code="meals.startDate"/>:</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <input class="form-control" name="startDate" id="startDate">
                                         </div>
 
-                                        <label class="control-label col-sm-3" for="startTime"><spring:message
+                                        <label class="control-label col-sm-4" for="startTime"><spring:message
                                                 code="meals.startTime"/>:</label>
 
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input class="form-control" name="startTime" id="startTime">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-2" for="endDate"><spring:message
+                                        <label class="control-label col-sm-3" for="endDate"><spring:message
                                                 code="meals.endDate"/>:</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <input class="form-control" name="endDate" id="endDate">
                                         </div>
 
-                                        <label class="control-label col-sm-3" for="endTime"><spring:message
+                                        <label class="control-label col-sm-4" for="endTime"><spring:message
                                                 code="meals.endTime"/>:</label>
 
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input class="form-control" name="endTime" id="endTime">
                                         </div>
                                     </div>
-                                </form>
+                                </form:form>
                             </div>
                             <div class="panel-footer text-right">
                                 <a class="btn btn-danger" type="button" onclick="clearFilter()">
@@ -76,24 +78,6 @@
                         <th></th>
                     </tr>
                     </thead>
-                    <c:forEach items="${meals}" var="meal">
-                        <jsp:useBean id="meal" scope="page" type="com.bizarrerus.to.MealWithExceed"/>
-                        <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
-                            <td>
-                                    <%--<fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parsedDate"/>--%>
-                                    <%--<fmt:formatDate value="${parsedDate}" pattern="yyyy.MM.dd HH:mm" />--%>
-                                    ${fn:formatDateTime(meal.dateTime)}
-                            </td>
-                            <td>${meal.description}</td>
-                            <td>${meal.calories}</td>
-                            <td><a class="btn btn-xs btn-primary" onclick="updateRow(${meal.id})">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a></td>
-                            <td><a class="btn btn-xs btn-danger" onclick="deleteRow(${meal.id})">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a></td>
-                        </tr>
-                    </c:forEach>
                 </table>
             </div>
         </div>
@@ -109,15 +93,15 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm">
-                    <input type="text" hidden="hidden" id="id" name="id">
+                <form:form class="form-horizontal" id="detailsForm">
+                    <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
                         <label for="dateTime" class="control-label col-xs-3"><spring:message
                                 code="meals.dateTime"/></label>
 
                         <div class="col-xs-9">
-                            <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
+                            <input class="form-control" id="dateTime" name="dateTime"
                                    placeholder="<spring:message code="meals.dateTime"/>">
                         </div>
                     </div>
@@ -145,11 +129,10 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
-    <input type="hidden" value='<spring:message code="meals.edit"/>' id="editTitle" />
 </div>
 </body>
 </html>
