@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import com.bizarrerus.AuthorizedUser;
 import com.bizarrerus.model.User;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController {
@@ -22,9 +24,8 @@ public class ProfileRestController extends AbstractUserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public void update(@RequestBody UserTo userTo) {
-        super.update(userTo);
+    public void update(@Valid @RequestBody UserTo userTo) {
+        super.update(userTo, AuthorizedUser.id());
     }
 
     @GetMapping(value = "/text")

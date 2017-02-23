@@ -1,9 +1,7 @@
 package com.bizarrerus.util;
 
+import com.bizarrerus.HasId;
 import com.bizarrerus.util.exception.NotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 
 public class ValidationUtil {
     private ValidationUtil() {
@@ -43,9 +41,20 @@ public class ValidationUtil {
         }
     }
 
-    public static ResponseEntity<String> getErrorResponse(BindingResult result) {
+    //    http://stackoverflow.com/a/28565320/548473
+    public static Throwable getRootCause(Throwable t) {
+        Throwable result = t;
+        Throwable cause;
+
+        while (null != (cause = result.getCause()) && (result != cause)) {
+            result = cause;
+        }
+        return result;
+    }
+
+    /*public static ResponseEntity<String> getErrorResponse(BindingResult result) {
         StringBuilder sb = new StringBuilder();
         result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
         return new ResponseEntity<>(sb.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
-    }
+    }*/
 }

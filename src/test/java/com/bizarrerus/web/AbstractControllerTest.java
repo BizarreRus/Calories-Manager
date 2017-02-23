@@ -27,7 +27,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 })
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
 @ActiveProfiles(resolver = AllActiveProfileResolver.class)
 abstract public class AbstractControllerTest {
 
