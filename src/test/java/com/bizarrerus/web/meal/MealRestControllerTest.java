@@ -12,19 +12,19 @@ import com.bizarrerus.web.AbstractControllerTest;
 import com.bizarrerus.web.json.JsonUtil;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import static com.bizarrerus.TestUtil.userHttpBasic;
-import static com.bizarrerus.UserTestData.ADMIN;
-import static com.bizarrerus.UserTestData.ADMIN_ID;
+import static com.bizarrerus.UserTestData.*;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static com.bizarrerus.MealTestData.*;
-import static com.bizarrerus.UserTestData.USER;
 import static com.bizarrerus.model.BaseEntity.START_SEQ;
+import static com.bizarrerus.MealTestData.MATCHER;
 
 public class MealRestControllerTest extends AbstractControllerTest {
 
@@ -189,5 +189,16 @@ public class MealRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isConflict());
+    }
+
+    @Test
+    public void testUpdateHtmlUnsafe() throws Exception {
+        Meal invalid = new Meal(MEAL1_ID, LocalDateTime.now(), "<script>alert(123)</script>", 200);
+        mockMvc.perform(put(REST_URL + MEAL1_ID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(invalid))
+                .with(userHttpBasic(USER)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
     }
 }

@@ -10,17 +10,22 @@
     <div class="container">
         <div class="navbar-header navbar-brand"><spring:message code="app.title"/></div>
         <div class="navbar-collapse collapse">
-            <form:form class="navbar-form navbar-right" role="form" action="spring_security_check" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" name="username">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                </button>
-            </form:form>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
+                        <div class="form-group">
+                            <input type="text" placeholder="Email" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" class="form-control" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                        </button>
+                    </form:form>
+                </li>
+                <jsp:include page="fragments/lang.jsp"/>
+            </ul>
         </div>
     </div>
 </div>
@@ -48,27 +53,27 @@
             </button>
         </p>
         <br/>
-        <p>Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
-            <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
-            <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
-            <a href="http://spring.io/blog/2014/05/07/preview-spring-security-test-method-security">Spring Security
-                Test</a>,
-            <a href="http://hibernate.org/orm/">Hibernate ORM</a>,
-            <a href="http://hibernate.org/validator/">Hibernate Validator</a>,
-            <a href="http://www.slf4j.org/">SLF4J</a>,
-            <a href="https://github.com/FasterXML/jackson">Json Jackson</a>,
-            <a href="http://ru.wikipedia.org/wiki/JSP">JSP</a>,
-            <a href="http://en.wikipedia.org/wiki/JavaServer_Pages_Standard_Tag_Library">JSTL</a>,
-            <a href="http://tomcat.apache.org/">Apache Tomcat</a>,
-            <a href="http://www.webjars.org/">WebJars</a>,
-            <a href="http://datatables.net/">DataTables plugin</a>,
-            <a href="http://ehcache.org">Ehcache</a>,
-            <a href="http://www.postgresql.org/">PostgreSQL</a>,
-            <a href="http://junit.org/">JUnit</a>,
-            <a href="http://hamcrest.org/JavaHamcrest/">Hamcrest</a>,
-            <a href="http://jquery.com/">jQuery</a>,
-            <a href="http://ned.im/noty/">jQuery notification</a>,
-            <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
+        <%--<p>Стек технологий: Spring Security,
+            Spring MVC,
+            Spring Data JPA,
+            Spring Security
+            Test,
+            Hibernate ORM,
+            Hibernate Validator,
+            SLF4J,
+            Json Jackson,
+            JSP,
+            JSTL,
+            Apache Tomcat,
+            WebJars,
+            DataTables plugin,
+            Ehcache,
+            PostgreSQL,
+            JUnit,
+            Hamcrest,
+            jQuery,
+            jQuery notification,
+            Bootstrap.</p>--%>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
