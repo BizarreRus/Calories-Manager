@@ -44,6 +44,10 @@
         </c:if>
         <br/>
         <p>
+            <spring:message code="app.description"/>
+        </p>
+        <br/>
+        <p>
             <a class="btn btn-lg btn-success" href="register"><spring:message code="app.register"/> &raquo;</a>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user@yandex.ru', 'password')">
                 <spring:message code="app.enter"/> User
@@ -52,28 +56,6 @@
                 <spring:message code="app.enter"/> Admin
             </button>
         </p>
-        <br/>
-        <%--<p>Стек технологий: Spring Security,
-            Spring MVC,
-            Spring Data JPA,
-            Spring Security
-            Test,
-            Hibernate ORM,
-            Hibernate Validator,
-            SLF4J,
-            Json Jackson,
-            JSP,
-            JSTL,
-            Apache Tomcat,
-            WebJars,
-            DataTables plugin,
-            Ehcache,
-            PostgreSQL,
-            JUnit,
-            Hamcrest,
-            jQuery,
-            jQuery notification,
-            Bootstrap.</p>--%>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
